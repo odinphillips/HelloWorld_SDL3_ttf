@@ -12,7 +12,7 @@ First find a location on your machine to clone the SDL repo. Then do the followi
 git clone --recurse-submodules -j4 https://github.com/libsdl-org/SDL_ttf.git
 ```
 
-Note: SDL_ttf has three dependencies (as Git submodules) located in `external/`:
+Note: SDL_ttf has three external dependencies (as Git submodules) located in `external/`:
 - freetype
 - harfbuzz
 - SDL
@@ -27,7 +27,7 @@ Note: we are using the msys terminal program located here: (it may be different 
 ```
 C:\msys64\ucrt64.exe
 ```
-## SDL3 build and install
+## SDL3_ttf build and install
 
 Launch a new msys `ucrt64` terminal (remember to right-click on the app and 'Run as administrator' this is needed for the cmake install step later).
 
