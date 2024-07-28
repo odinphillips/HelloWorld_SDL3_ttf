@@ -23,6 +23,13 @@ We will build SDL_ttf using the msys2 terminal environment. First go to the offi
 
 Then follow the installation steps on their webpage and install the standard build tools etc that you need using `pacman` (package installer).
 
+Example usage:
+```
+pacman S <SEARCH>  # To search for all packages with name <SEARCH>.
+
+pacman Ss <package_name>  # To install <package_name>
+```
+
 Note: we are using the msys terminal program located here: (it may be different on your machine, depending on where you have installed it.)
 ```
 C:\msys64\ucrt64.exe
@@ -103,3 +110,9 @@ Run it!
 ```
 .\helloworld-sdl3-ttf.exe
 ```
+
+**Note:** The program above may fail to execute, due to missing `.dll` files. You can see this in the logs when running the program in a termainl such as Windows Powershell.
+
+See the **'Copy dll files'** section above. You may need to install other libraries on your system in order to have all the required dll files for `helloworld-sdl3-ttf.exe`. 
+
+**IMPORTANT:** the dll files *must* be in the same directory as the executable `helloworld-sdl3-ttf.exe`.
