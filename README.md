@@ -23,17 +23,18 @@ We will build SDL_ttf using the msys2 terminal environment. First go to the offi
 
 Then follow the installation steps on their webpage and install the standard build tools etc that you need using `pacman` (package installer).
 
-Example usage:
+**Note:** we are using the msys terminal program located here: (it may be different on your machine, depending on where you have installed it.)
+```
+C:\msys64\ucrt64.exe
+```
+
+*Example:* `pacman` tool usage:
 ```
 pacman S <SEARCH>  # To search for all packages with name <SEARCH>.
 
 pacman Ss <package_name>  # To install <package_name>
 ```
 
-Note: we are using the msys terminal program located here: (it may be different on your machine, depending on where you have installed it.)
-```
-C:\msys64\ucrt64.exe
-```
 ## SDL3_ttf build and install
 
 Launch a new msys `ucrt64` terminal (remember to right-click on the app and 'Run as administrator' this is needed for the cmake install step later).
