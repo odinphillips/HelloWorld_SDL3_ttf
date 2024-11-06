@@ -28,7 +28,7 @@ Then follow the installation steps on their webpage and install the standard bui
 C:\msys64\ucrt64.exe
 ```
 
-*Example:* `pacman` tool usage:
+*Example:* `pacman` tool usage.
 ```
 pacman S <SEARCH>  # To search for all packages with name <SEARCH>.
 
@@ -60,6 +60,136 @@ Make a note of where it installs the built files, e.g.
 ```
 -- Installing: C:/Program Files (x86)/SDL3_ttf/*
 ```
+
+Here are other build configurations for both clang and gcc:
+
+<details>
+<summary><b><u>SDL_ttf clang build Debug</u></b></summary>
+
+```
+cd /c/Work/deps/SDL_ttf
+mkdir build_clang_debug
+cd build_clang_debug
+cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=OFF -DCMAKE_PREFIX_PATH=/C/Libs/SDL3/SDL3_clang_debug ..
+cmake --build . --config Debug --parallel
+cmake --install . --config Debug --prefix /c/Libs/SDL3_ttf/SDL3_ttf_clang_debug
+```
+*(Note: after running cmake .. you can check the options with cmake -L)*
+
+</details>
+
+<details>
+<summary><b><u>SDL_ttf clang build Debug ASAN</u></b></summary>
+Note: the use of `-nodefaultlibs` fixes the duplicates symbols for malloc, free, etc. that `ASAN` uses from clashing with the ones from `ucrtbased.dll`. (The other way to fix this is to build in release mode).
+
+```
+cd /c/Work/deps/SDL_ttf
+mkdir build_clang_debug_asan
+cd build_clang_debug_asan
+cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=OFF -DCMAKE_PREFIX_PATH=/C/Libs/SDL3/SDL3_clang_debug_asan -DCMAKE_C_FLAGS="-fsanitize=address" -DCMAKE_C_FLAGS="-nodefaultlibs" -DCMAKE_CXX_FLAGS="-fsanitize=address" -DCMAKE_CXX_FLAGS="-nodefaultlibs" ..
+cmake --build . --config Debug --parallel
+cmake --install . --config Debug --prefix /c/Libs/SDL3_ttf/SDL3_ttf_clang_debug_asan
+```
+</details>
+
+<details>
+<summary><b><u>SDL_ttf clang build Release</u></b></summary>
+
+```
+cd /c/Work/deps/SDL_ttf
+mkdir build_clang_release
+cd build_clang_release
+cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_PREFIX_PATH=/C/Libs/SDL3/SDL3_clang_release ..
+cmake --build . --config Release --parallel
+cmake --install . --config Release --prefix /c/Libs/SDL3_ttf/SDL3_ttf_clang_release
+```
+
+</details>
+
+<details>
+<summary><b><u>SDL_ttf clang build Release ASAN</u></b></summary>
+
+```
+cd /c/Work/deps/SDL_ttf
+mkdir build_clang_release_asan
+cd build_clang_release_asan
+cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_PREFIX_PATH=/C/Libs/SDL3/SDL3_clang_release_asan -DCMAKE_C_FLAGS="-fsanitize=address" -DCMAKE_C_FLAGS="-nodefaultlibs" -DCMAKE_CXX_FLAGS="-fsanitize=address" -DCMAKE_CXX_FLAGS="-nodefaultlibs" ..
+cmake --build . --config Release --parallel
+cmake --install . --config Release --prefix /c/Libs/SDL3_ttf/SDL3_ttf_clang_release_asan
+```
+</details>
+
+<details>
+<summary><b><u>SDL_ttf clang build RelWithDebInfo</u></b></summary>
+
+```
+cd /c/Work/deps/SDL_ttf
+mkdir build_clang_release_deb
+cd build_clang_release_deb
+cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_SHARED_LIBS=OFF -DCMAKE_PREFIX_PATH=/C/Libs/SDL3/SDL3_clang_release_deb ..
+cmake --build . --config RelWithDebInfo --parallel
+cmake --install . --config RelWithDebInfo --prefix /c/Libs/SDL3_ttf/SDL3_ttf_clang_release_deb
+```
+
+</details>
+
+<details>
+<summary><b><u>SDL_ttf clang build RelWithDebInfo ASAN</u></b></summary>
+
+```
+cd /c/Work/deps/SDL_ttf
+mkdir build_clang_release_deb_asan
+cd build_clang_release_deb_asan
+cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_SHARED_LIBS=OFF -DCMAKE_PREFIX_PATH=/C/Libs/SDL3/SDL3_clang_release_deb_asan -DCMAKE_C_FLAGS="-fsanitize=address" -DCMAKE_C_FLAGS="-nodefaultlibs" -DCMAKE_CXX_FLAGS="-fsanitize=address" -DCMAKE_CXX_FLAGS="-nodefaultlibs" ..
+cmake --build . --config RelWithDebInfo --parallel
+cmake --install . --config RelWithDebInfo --prefix /c/Libs/SDL3_ttf/SDL3_ttf_clang_release_deb_asan
+```
+</details>
+
+<details>
+<summary><b><u>SDL_ttf gcc build Debug</u></b></summary>
+
+```
+cd /c/Work/deps/SDL_ttf
+mkdir build_gcc_debug
+cd build_gcc_debug
+cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=OFF -DCMAKE_PREFIX_PATH=/C/Libs/SDL3/SDL3_gcc_debug ..
+cmake --build . --config Debug --parallel
+cmake --install . --config Debug --prefix /c/Libs/SDL3_ttf/SDL3_ttf_gcc_debug
+```
+
+</details>
+
+<details>
+<summary><b><u>SDL_ttf gcc build Release</u></b></summary>
+
+```
+cd /c/Work/deps/SDL_ttf
+mkdir build_gcc_release
+cd build_gcc_release
+cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_PREFIX_PATH=/C/Libs/SDL3/SDL3_gcc_release ..
+cmake --build . --config Release --parallel
+cmake --install . --config Release --prefix /c/Libs/SDL3_ttf/SDL3_ttf_gcc_release
+```
+
+</details>
+
+<details>
+<summary><b><u>SDL_ttf gcc build RelWithDebInfo</u></b></summary>
+
+```
+cd /c/Work/deps/SDL_ttf
+mkdir build_gcc_release_deb
+cd build_gcc_release_deb
+cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_SHARED_LIBS=OFF -DCMAKE_PREFIX_PATH=/C/Libs/SDL3/SDL3_gcc_release_deb ..
+cmake --build . --config RelWithDebInfo --parallel
+cmake --install . --config RelWithDebInfo --prefix /c/Libs/SDL3_ttf/SDL3_ttf_gcc_release_deb
+```
+
+</details>
+
+--
+
 Now you are ready to run the HelloWorld_SDL3_ttf example from this repo.
 
 (**Note:** the SDL_ttf repo also has some code samples in the directory `examples/`)
